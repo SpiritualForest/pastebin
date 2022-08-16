@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<!-- what pasted code would look like. Python in this case -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>Paste</title>
+    </head>
+    <body>
+        <div class="menu">
+            <div class="links">
+                <a href="#">New</a>
+                <a href="#">Remove</a> <!-- Should be a dynamically generated link that's only visible after the paste was made -->
+            </div>
+            <div class="expiry">Expires on 13 August 2022, 14:05:33 UTC</div>
+        </div>
+            <div class="paste">
+                <!-- Populate with EJS -->
+                <code><span class="comment"># Python</span></code>
+                <br>
+                <code>fh = <span class="function">open</span>(<span class="string">"input.txt"</span>)</code>
+                <code>data = fh.read().strip().split(<span class="string">"\n"</span>)</code>
+                <code>data = <span class="function">list</span>(<span class="function">map</span>(int, data))</code>
+                <code>fh.close()</code>
+                <br>
+                <code><span class="keyword">def</span> <span class="function">partOne</span>(data):</code>
+                <code>  increases = <span class="int">0</span></code>
+                <code>  previous = data[<span class="int">0</span>]</code>
+                <br>
+                <code>  <span class="keyword">for</span> number <span class="keyword">in</span> data:</code>
+                <code>      <span class="keyword">if</span> number &gt; previous:</code>
+                <code>          increases += <span class="int">1</span></code>
+                <code>      previous = number</code>
+                <br>
+                <code>  <span class="keyword">return</span> increases</code>
+                <br>
+                <code><span class="function">print</span>(partOne(data))</code>
+                <br>
+                <code><span class="comment"># Part 2</span></code>
+                <br>
+                <code><span class="keyword">def</span> <span class="function">partTwo</span>(data):</code>
+                <code>  increases = <span class="int">0</span></code>
+                <code>  previousSum = sum(data[<span class="int">0</span>:<span class="int">3</span>])</code>
+                <code>  i = <span class="int">1</span></code>
+                <code>  <span class="keyword">while</span> i &lt; <span class="function">len</span>(data):</code>
+                <code>      currentSum = sum(data[i:i+<span class="int">3</span>])</code>
+                <code>      <span class="keyword">if</span> currentSum &gt; previousSum:</code>
+                <code>          increases += <span class="int">1</span></code>
+                <code>      previousSum = currentSum</code>
+                <code>      i += <span class="int">1</span></code>
+                <br>
+                <code>  <span class="keyword">return</span> increases</code>
+                <br>
+                <code><span class="function">print</span>(partTwo(data))</code>
+        </div>
+    </body>
+</html>

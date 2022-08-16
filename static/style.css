@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0;
+    /*border: 1px solid red; /* Debug */
+}
+
+body {
+    background-color: #f4f0ec;
+}
+
+.menu {
+    display: flex;
+    background-color: #e5e4e2;
+    width: 80%;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+.actions-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.preferences {
+    /* is a child of actions-menu */
+    display: flex;
+}
+
+.syntax-menu {
+    margin-right: 25px;
+}
+
+.syntax-menu, .expiration {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.paste-btn, textarea {
+    margin-left: 10px;
+}
+
+.paste-btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.paste-btn:hover {
+    color: #00afff
+}
+
+.paste {
+    /*border: 1px solid red;*/
+    width: 80%;
+    overflow: scroll;
+    background-color: #e5e4e2;
+    margin: 10px;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.lines {
+    font-family: Terminus, sans-serif;
+    font-size: 14px;
+    background-color: #dcdcdc;
+    border: 1px solid black;
+}
+
+/* Syntax highlighting styling */
+
+.line-number {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #acacac;
+    color: black;
+}
+
+code {
+    font-size: 14px;
+    font-family: Terminus, sans-serif;
+    display: block;
+    white-space: pre;
+    padding: 2px;
+}
+
+.function, .keyword, .string, .int, .float, .comment {
+    font-family: inherit;
+}
+
+.function, .keyword, .comment {
+    font-weight: bold;
+}
+
+.function {
+    color: blue;
+}
+
+.keyword {
+    color: darkgreen;
+}
+
+.string, .int, .float {
+    color: #b22222;
+}
+
+.comment {
+    color: purple;
+}
+
+.checkbox-div {
+    padding: 10px;
+}
+
+.links {
+    padding: 10px;
+}
+
+.expiry {
+    display: inline-block;
+    font-style: italic;
+    padding: 10px;
+    margin-right: auto;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "pastebin",
+  "version": "0.0.1",
+  "description": "Pastebin with syntax highlighting support for multiple languages",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "sequelize": "^6.21.3",
+    "sqlite3": "^5.0.11"
+  }
+}
