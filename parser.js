@@ -35,7 +35,7 @@ function readPythonFile(filename) {
     }
 }
 
-const pythonCode = readPythonFile("../gcd.py");
+const pythonCode = readPythonFile("../analyze.py");
 parsePython(pythonCode);
 
 /* Use regex match.index and match.lastIndex to find the substring location for replacement */
@@ -64,10 +64,12 @@ export function parse(syntax, text) {
 function parsePython(text) {
     /* Character by character analysis of each line.
      * Non-alphanumeric characters are considered our delimiters. */
+    let parsed = "";
     let m_string = false; // Are we in a string?
     let m_escaped = false; // If we encounter backslash
-    let delimiters = new Set(["(", ")", '"', "'", " ", ":", "="]);
+    let delimiters = new Set(["(", ")", '"', "'", " ", ":", "=", "\n"]);
     for(let line of text.split("\n")) {
+        line += "\n"
         let accumulation = ""; // Everything else
         let comment = ""; // If we are in a comment, accumulate the rest of the string into this one.
         let m_comment = false; // Are we in a comment?
@@ -75,6 +77,7 @@ function parsePython(text) {
         let processedLine = "";
         let fname = ""; // Function name
         let accumulatedString = ""; // If we're in a string, accumulate the characters here.
+        let whitespace = 0;
         for(let c of line) {
             if (c == '"' || c == "'") {
                 m_string = !m_string;
@@ -90,7 +93,7 @@ function parsePython(text) {
                 // Treat everything after this as a comment.
                 m_comment = true;
             }
-            if (m_comment) {
+            if (m_comment && c != "\n") {
                 comment += c;
             }
             else if (!delimiters.has(c) && !m_string && !m_comment) {
@@ -105,6 +108,7 @@ function parsePython(text) {
             }
             else {
                 // Delimiter
+                if (c == " ") { whitespace++; }
                 if (identifiers[S_PYTHON]["keywords"].has(accumulation)) {
                     processedLine += "<keyword>" + accumulation + "<end>" + c;
                 }
@@ -130,8 +134,9 @@ function parsePython(text) {
             }
         }
         if (m_comment) {
-            processedLine += "<comment>" + comment + "</comment>";
+            processedLine += " ".repeat(whitespace) +  "<comment>" + comment + "<end>\n";
         }
-        console.log(processedLine);
+        parsed += processedLine;
     }
+    console.log(parsed);
 }
