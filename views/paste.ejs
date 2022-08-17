@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<!-- what pasted code would look like. Python in this case -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="static/style.css">
+        <title>Paste</title>
+    </head>
+    <body>
+        <div class="menu">
+            <div class="links">
+                <a href="/">New</a>
+                <a href="#">Remove</a> <!-- Should be a dynamically generated link that's only visible after the paste was made -->
+            </div>
+            <div class="expiry">Expires: </div>
+        </div>
+            <div class="paste">
+                <!-- Populate with EJS -->
+                <% text = text.replace(/<keyword>/g, "<span class=\"keyword\">"); %>
+                <% text = text.replace(/<function>/g, "<span class=\"function\">"); %>
+                <% text = text.replace(/<data>/g, "<span class=\"data\">"); %>
+                <% text = text.replace(/<comment>/g, "<span class=\"comment\">"); %>
+                <% text = text.replace(/<end>/g, "</span>"); %>
+                <% for(let line of text.split("\n")) { %>
+                    <% if (line.trim() === "") { %>
+                    <br>
+                    <% } else { %>
+                    <code><%- line %></code>
+                    <% } %>
+                <% } %>
+        </div>
+    </body>
+</html>

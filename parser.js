@@ -35,11 +35,6 @@ function readPythonFile(filename) {
     }
 }
 
-const pythonCode = readPythonFile("../analyze.py");
-parsePython(pythonCode);
-
-/* Use regex match.index and match.lastIndex to find the substring location for replacement */
-
 export function parse(syntax, text) {
     if (syntax == S_TEXT) {
         // Do nothing.
@@ -129,7 +124,6 @@ function parsePython(text) {
                 if (accumulation == "def") {
                     m_def = true;
                 }
-                // Now check built-in functions
                 accumulation = "";
             }
         }
@@ -138,5 +132,5 @@ function parsePython(text) {
         }
         parsed += processedLine;
     }
-    console.log(parsed);
+    return parsed;
 }

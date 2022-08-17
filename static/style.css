@@ -93,7 +93,7 @@ code {
     padding: 2px;
 }
 
-.function, .keyword, .string, .int, .float, .comment {
+.function, .keyword, .data, .comment {
     font-family: inherit;
 }
 
@@ -109,7 +109,7 @@ code {
     color: darkgreen;
 }
 
-.string, .int, .float {
+.data {
     color: #b22222;
 }
 

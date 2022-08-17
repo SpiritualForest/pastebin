@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+    <meta charset="utf8">
+    <head>
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <title>Pastebin</title>
+    </head>
+    <body>
+        <div class="page">
+            <div class="actions-menu">
+                <form id="paste-form" action="paste" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>"> <!-- CSRF protection token -->
+                    <input type="submit" value="Paste" class="paste-btn"></input>
+                </form>
+                <div class="preferences">
+                    <div class="syntax-menu">
+                        Syntax highlighting: 
+                        <select name="syntax" id="syntax-dropdown" form="paste-form">
+                            <option value="none">None</option>
+                            <option value="python">Python</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                        </select>
+                    </div>
+                    <div class="expiration">
+                        Expires: 
+                        <select name="expire" id="expire-dropdown" form="paste-form">
+                            <option value="never">Never</option>
+                            <option value="10minutes">10 minutes</option>
+                            <option value="hour">1 hour</option>
+                            <option value="day">1 day</option>
+                            <option value="week">1 week</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <textarea name="text" id="text" cols="100" rows="30" required="true" form="paste-form"></textarea>
+        </div>
+    </body>
+</html>
