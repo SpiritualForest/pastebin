@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import csrf from "csurf";
 import cookieParser from "cookie-parser";
-import { parse } from "./parser.js";
+import { parse } from "./parser/parser.js";
 import { addPaste, getPaste } from "./database.js";
 
 const app = express();
