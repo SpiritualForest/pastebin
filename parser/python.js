@@ -22,6 +22,8 @@ const identifiers = {
                           "&", "|", "~", "<<", ">>", "^"])
 }
 
+const isalnum = new RegExp(/^([A-Z]|[a-z]|[0-9])$/); // Is the character either a letter or a digit?
+
 export function parsePython(text) {
     let parsed = []; // Parsed lines go here
     let inString = false; // Are we in a string?
@@ -83,6 +85,10 @@ export function parsePython(text) {
                             parsedLine += _keyword(accumulation);
                             accumulation = "";
                         }
+                        else if (identifiers.operators.has(accumulation)) {
+                            parsedLine += _operator(accumulation);
+                            accumulation = "";
+                        }
                         break;
 
                     case "(":
@@ -108,9 +114,11 @@ export function parsePython(text) {
                     
                     default:
                         // Other delimeters for operators
-                        if (identifiers.operators.has(accumulation)) {
-                            parsedLine += _operator(accumulation);
-                            accumulation = "";
+                        if (isalnum.test(character)) {
+                            if (identifiers.operators.has(accumulation)) {
+                                parsedLine += _operator(accumulation);
+                                accumulation = "";
+                            }
                         }
                         break;
                 }
@@ -121,6 +129,10 @@ export function parsePython(text) {
         // Line processed. Check for comments
         if (inComment) {
             parsedLine += _comment(accumulation);
+            accumulation = "";
+        }
+        if (accumulation.length > 0) {
+            parsedLine += accumulation;
         }
         parsed.push(parsedLine);
     }
@@ -128,5 +140,5 @@ export function parsePython(text) {
 }
 
 /* Testing area */
-let data = readFile("/home/sid/gcd.py");
+let data = readFile("./gcd.py");
 console.log(parsePython(data));
