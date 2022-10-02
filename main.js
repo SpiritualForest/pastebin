@@ -52,6 +52,8 @@ app.get("/:url", async (req, res) => {
     let text = pasteObj.dataValues["text"];
     let syntax = pasteObj.dataValues["syntax"];
     let expires = pasteObj.dataValues["expires"];
+    console.log("TEXT");
+    console.log(text);
     res.render("paste", { "text": text, "syntax": syntax, "expires": expires });
 });
 

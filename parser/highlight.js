@@ -3,21 +3,21 @@
  * case to be translated when constructing the view. */
 
 export function _function(name) {
-    return `<function>${name}</end>`;
+    return `<function>${name}<end>`;
 }
 
 export function _keyword(name) {
-    return `<keyword>${name}</end>`;
+    return `<keyword>${name}<end>`;
 }
 
 export function _data(name) {
-    return `<data>${name}</end>`;
+    return `<data>${name}<end>`;
 }
 
 export function _operator(name) {
-    return `<operator>${name}</end>`;
+    return `<operator>${name}<end>`;
 }
 
 export function _comment(line) {
-    return `<comment>${line}</end>`;
+    return `<comment>${line}<end>`;
 }

@@ -73,6 +73,7 @@ export function parsePython(text) {
                         // We continue to read until the end of line.
                         // We add the comment after reading the rest of the line
                         inComment = true;
+                        parsedLine += accumulation;
                         accumulation = "";
                     }
                     break;
@@ -81,11 +82,11 @@ export function parsePython(text) {
                 switch(character) {
                     case " ":
                         // Spaces act as delimiters for keywords
-                        if (identifiers.keywords.has(accumulation)) {
+                        if (identifiers.keywords.has(accumulation.trim())) {
                             parsedLine += _keyword(accumulation);
                             accumulation = "";
                         }
-                        else if (identifiers.operators.has(accumulation)) {
+                        else if (identifiers.operators.has(accumulation.trim())) {
                             parsedLine += _operator(accumulation);
                             accumulation = "";
                         }
@@ -100,7 +101,7 @@ export function parsePython(text) {
 
                     case "[":
                         // List opening. Can delimit operators
-                        if (identifiers.operators.has(accumulation)) {
+                        if (identifiers.operators.has(accumulation.trim())) {
                             parsedLine += _operator(accumulation);
                             accumulation = "";
                         }
@@ -115,7 +116,7 @@ export function parsePython(text) {
                     default:
                         // Other delimeters for operators
                         if (isalnum.test(character)) {
-                            if (identifiers.operators.has(accumulation)) {
+                            if (identifiers.operators.has(accumulation.trim())) {
                                 parsedLine += _operator(accumulation);
                                 accumulation = "";
                             }
