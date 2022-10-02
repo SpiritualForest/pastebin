@@ -140,5 +140,8 @@ export function parsePython(text) {
 }
 
 /* Testing area */
-let data = readFile("./gcd.py");
-console.log(parsePython(data));
+console.log(process.argv);
+if (process.argv.length > 0 && process.argv.pop() == "--test") {
+    let data = readFile("./gcd.py");
+    console.log(parsePython(data));
+}
